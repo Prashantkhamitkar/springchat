@@ -1,0 +1,28 @@
+server:
+  port: ${PORT:9090}
+  address: 0.0.0.0
+
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/chatdb}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  # Remove H2 console section as it's not needed for PostgreSQL
+
+# CORS configuration for React frontend
+cors:
+  allowed-origins: ${FRONTEND_URL:http://localhost:3000}
+
+# WebSocket configuration
+websocket:
+  allowed-origins: ${FRONTEND_URL:http://localhost:3000}
